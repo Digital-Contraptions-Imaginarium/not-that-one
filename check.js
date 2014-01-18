@@ -23,8 +23,10 @@ var readDatabase = function (callback) {
                 callback(!tellData.products);
             });
         }, function (err) {
-            database = { tells: tells };
-            callback(err);
+            d3.json("./data/whitelist.json", function (whitelist) {
+                database = { whitelist: whitelist, tells: tells };
+                callback(err);
+            });
         });
     });
 }
@@ -45,11 +47,25 @@ var findProductTells = function (barcode, callback) {
     callback(null, tells);
 }
 
+var isWhitelisted = function (barcode, callback) {
+    callback(null, database.whitelist.products.some(function (product) {
+        return (product.barcode.contents == barcode.contents) &&
+               (product.barcode.format == barcode.format) &&
+               (product.barcode.type == barcode.type);
+    }));  
+}
+
 var findMaxWarningLevel = function (barcode, callback) {
-    findProductTells(barcode, function (err, tells) {
-        callback(err, tells.reduce(function (memo, tell) {
-            return tell.warning_level > memo ? tell.warning_level : memo;
-        }, -1));
+    isWhitelisted(barcode, function (err, whitelisted) {
+        if (whitelisted) {
+            callback(err, 0);
+        } else {
+            findProductTells(barcode, function (err, tells) {
+                callback(err, tells.reduce(function (memo, tell) {
+                    return tell.warning_level > memo ? tell.warning_level : memo;
+                }, -1));
+            });
+        }
     });
 }
 
