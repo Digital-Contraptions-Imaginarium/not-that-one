@@ -9,6 +9,15 @@
 		"warning_level": 1
 	},
 	{
+		"name": "soya_lecithin",
+		"pretty_name": "Soya lecithin",
+		"description": "Soya lecithin is in the ingredients, used likely as an emulsifier, replacing better quality ingredients, e.g. cocoa solids in chocolate.",
+		"references": [
+			"http://chriskresser.com/harmful-or-harmless-soy-lecithin"
+		],
+		"warning_level": 2
+	},
+	{
 		"name": "titanium",
 		"pretty_name": "Titanium Dioxide",
 		"description": "Titanium dioxide is in the ingredients.",
