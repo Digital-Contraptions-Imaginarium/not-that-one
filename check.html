@@ -5,7 +5,6 @@
  		<script src="check.js"></script>
  	</head>
  	<body bgcolor="#545454">
-
  		<script>
  			readDatabase(function (err) {
 	 			findMaxWarningLevel({ format: qs.format, contents: qs.contents, type: qs.type }, function (err, maxLevel) {
@@ -22,9 +21,9 @@
 	 						break;
 	 				}
 	 				document.body.style.background = colour;
+	 				document.write(maxLevel);
 	 			});
  			});
  		</script>
-
  	</body>
  <html>

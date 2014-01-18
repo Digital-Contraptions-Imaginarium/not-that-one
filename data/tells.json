@@ -11,9 +11,10 @@
 	{
 		"name": "soya_lecithin",
 		"pretty_name": "Soya lecithin",
-		"description": "Soya lecithin is in the ingredients, used likely as an emulsifier, replacing better quality ingredients, e.g. cocoa solids in chocolate.",
+		"description": "Soya lecithin is in the ingredients, used likely as an emulsifier, replacing better quality ingredients, e.g. cocoa solids in chocolate. To grow soybeans, vast expanses of land in fragile ecosystems are put at risk in the Brazilian Cerrado, Amazon, Chaco and the Atlantic Forests of South America.",
 		"references": [
-			"http://chriskresser.com/harmful-or-harmless-soy-lecithin"
+			"http://chriskresser.com/harmful-or-harmless-soy-lecithin",
+			"http://wwf.panda.org/what_we_do/footprint/agriculture/soy/consumers/"
 		],
 		"warning_level": 2
 	},

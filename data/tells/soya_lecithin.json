@@ -2,7 +2,7 @@
 	"products": [
 		{ 
 			"barcode": { "contents": "5060065062448", "format":"EAN_13", "type":"PRODUCT" }, 
-		  	"human-description": "Montezuma's 'Bean Machine' chocolate"
+		  	"human-description": "Montezuma's 'Bean Machine' chocolate bar"
 		}
 	]	
 }
