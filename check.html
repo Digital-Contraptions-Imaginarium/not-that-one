@@ -8,19 +8,7 @@
  		<script>
  			readDatabase(function (err) {
 	 			findMaxWarningLevel({ format: qs.format, contents: qs.contents, type: qs.type }, function (err, maxLevel) {
-	 				var colour = "grey"; // no info found
-	 				switch (maxLevel) {
-	 					case 0: // whitelisted
-	 						colour = "green";
-	 						break;
-	 					case 1: // warning
-	 						colour = "yellow";
-	 						break;
-	 					case 2: // no-no
-	 						colour = "red";
-	 						break;
-	 				}
-	 				document.body.style.background = colour;
+	 				document.body.style.background = [ "grey", "green", "yellow", "red" ][maxLevel + 1];
 	 			});
  			});
  		</script>

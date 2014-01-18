@@ -62,7 +62,7 @@ var findMaxWarningLevel = function (barcode, callback) {
         } else {
             findProductTells(barcode, function (err, tells) {
                 callback(err, tells.reduce(function (memo, tell) {
-                    return tell.warning_level > memo ? tell.warning_level : memo;
+                    return parseInt(tell.warning_level) > memo ? parseInt(tell.warning_level) : memo;
                 }, -1));
             });
         }
@@ -70,12 +70,3 @@ var findMaxWarningLevel = function (barcode, callback) {
 }
 
 var database = { };
-
-/*
-var q = 'select * from json where url="https://raw.github.com/giacecco/not-that-one-db/master/tells.json" and itemPath = "json.json"';
-jyql(q, function (err, data) { console.log(JSON.stringify(data.query.results.json)); });
-
-d3.json("https://raw.github.com/giacecco/not-that-one-db/master/tells.json", function (data) {
-    console.log(JSON.stringify(data));
-});
-*/
