@@ -4,12 +4,12 @@
 		<script src="async-b6a1336bcb.js"></script>
  		<script src="check.js"></script>
  	</head>
- 	<body>
+ 	<body bgcolor="#545454">
 
  		<script>
  			readDatabase(function (err) {
 	 			findProductTells({ format: qs.format, contents: qs.contents, type: qs.type }, function (err, tells) {
-	 				document.write((new Date()) + " Hello! The tells are " + JSON.stringify(tells));
+	 				document.body.style.background = tells.length > 0 ? "red" : "green";
 	 			});
  			});
  		</script>

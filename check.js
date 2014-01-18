@@ -10,11 +10,6 @@ var qs = (function(a) {
     return b;
 })(window.location.search.substr(1).split('&'));
 
-var makeDatabaseUrl = function (githubUsername) {
-    return "./data";
-    // return "https://raw.github.com/" + githubUsername + "/not-that-one-db/master";
-}
-
 var readDatabase = function (callback) {
     var tells = [ ];    
     d3.json("./data/tells.json", function (tempTells) {
