@@ -45,4 +45,12 @@ var findProductTells = function (barcode, callback) {
     callback(null, tells);
 }
 
+var findMaxWarningLevel = function (barcode, callback) {
+    findProductTells(barcode, function (err, tells) {
+        callback(err, tells.reduce(function (memo, tell) {
+            return tell.warning_level > memo ? tell.warning_level : memo;
+        }, 0));
+    });
+}
+
 var database = { };

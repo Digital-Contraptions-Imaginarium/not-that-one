@@ -1,0 +1,8 @@
+{
+	"products": [
+		{ 
+			"barcode": { "contents": "5000169244050", "format":"EAN_13", "type":"PRODUCT" }, 
+		  	"human-description": "Waitrose organic onions"
+		}
+	]	
+}

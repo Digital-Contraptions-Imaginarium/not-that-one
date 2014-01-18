@@ -8,8 +8,8 @@
 
  		<script>
  			readDatabase(function (err) {
-	 			findProductTells({ format: qs.format, contents: qs.contents, type: qs.type }, function (err, tells) {
-	 				document.body.style.background = tells.length > 0 ? "red" : "green";
+	 			findMaxWarningLevel({ format: qs.format, contents: qs.contents, type: qs.type }, function (err, maxLevel) {
+	 				document.body.style.background = (maxLevel == 0 ? "green" : (maxLevel == 1 ? "yellow" : "green"));
 	 			});
  			});
  		</script>
