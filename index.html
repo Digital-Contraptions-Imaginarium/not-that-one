@@ -1,18 +1,44 @@
 <html>
 	<head>
-		<script src="d3js-3.4.1.min.js"></script>
-		<script src="async-b6a1336bcb.js"></script>
- 		<script src="index.js"></script>
- 	</head>
- 	<body>
+		<title>hypochondriac</title>
+	</head>
+	<body>
 
- 		<script>
- 			readDatabase(function (err) {
-	 			findProductTells({ format: qs.format, contents: qs.contents, type: qs.type }, function (err, tells) {
-	 				document.write((new Date()) + " Hello! The tells are " + JSON.stringify(tells));
-	 			});
- 			});
- 		</script>
+		<p><h1>hypochondriac</h1></p>
+		<p>
+			Even without knowing everything about the packaged food we buy, there may often be one or few elements that may suggest we should rather buy something else. They are like 'tells' that suggests that one product is simply worse than another that does not have those same key characteristics.
+		</p>
+		<p>
+			The tells may be based on:
+			<ul>
+				<li>fact, e.g. the maker is known for <a href="http://www.theguardian.com/business/shortcuts/2012/oct/17/boycotting-tax-avoiding-companies">tax avoidance</a>, or for <a href="http://en.wikipedia.org/wiki/Nestl%C3%A9_boycott">marketing breast milk substitutes in Africa</a>.
+				<li>opinion, e.g. some say drinking homogenised milk can <a href="http://www.quickanddirtytips.com/health-fitness/healthy-eating/is-homogenized-milk-bad-for-you">increase risk of heart disease</a>, or that we should better avoid eating food containing <a href="http://www.naturalnews.com/027000_titanium_dioxide_vitamins.html">titanium dioxide</a>.
+				<li>preference, e.g. organic food is <a href="http://www.telegraph.co.uk/health/healthnews/9517246/Organic-food-is-not-healthier.html">better</a> for me and my family, or, at least, is produced in a way that is more ethical and sustainable.
+			</ul>
+		<p>
+			The "Hypochondriac" app helps you spotting those tells without spending hours doing the shopping. Just point your mobile phone to the item's barcode - or shop online only on participating websites - and let Hypochondriac tell you if you should rather buy something else.
+		</p>
 
- 	</body>
- <html>
+		<p><h2>It is already working!</h2></p>
+		<p>
+			If you have an Android phone you will be able to simulate how the app works before we develop it!
+		</p>
+		<p> 
+			Install the free <a href="https://play.google.com/store/apps/details?id=com.google.zxing.client.android">Barcode Scanner</a> app and configure it for performing "custom searches". Go to <i>Settings / Results settings</i> and set the <i>Custom search URL</i> to use <i>http://www.digitalcontraptionsimaginarium.co.uk/hypochondriac/check.html?contents=%s&format=%f&type=%t</i>
+		</p>
+		<table align="center"><tr><td>
+			<img src="images/scanner1.png">
+		</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>
+			<img src="images/scanner2.png">
+		</td></tr></table>
+		<p>
+			... then use Barcode Scanner to run custom searches on the products below (click to see the full size image).
+		</p>
+		<table align="center"><tr>
+			<td>
+				<a href="examples/titanium_back.jpg"><img width="200" src="examples/titanium_back.jpg"></a>
+			</td>
+		</tr></table>
+
+	</body>
+</html>

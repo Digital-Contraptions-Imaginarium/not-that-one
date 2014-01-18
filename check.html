@@ -1,0 +1,18 @@
+<html>
+	<head>
+		<script src="d3js-3.4.1.min.js"></script>
+		<script src="async-b6a1336bcb.js"></script>
+ 		<script src="check.js"></script>
+ 	</head>
+ 	<body>
+
+ 		<script>
+ 			readDatabase(function (err) {
+	 			findProductTells({ format: qs.format, contents: qs.contents, type: qs.type }, function (err, tells) {
+	 				document.write((new Date()) + " Hello! The tells are " + JSON.stringify(tells));
+	 			});
+ 			});
+ 		</script>
+
+ 	</body>
+ <html>
