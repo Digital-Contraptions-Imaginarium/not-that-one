@@ -10,22 +10,29 @@ var qs = (function(a) {
     return b;
 })(window.location.search.substr(1).split('&'));
 
+var makeDatabaseUrl = function (githubUsername) {
+    return "./data";
+    // return "https://raw.github.com/" + githubUsername + "/not-that-one-db/master";
+}
+
 var readDatabase = function (callback) {
     var tells = [ ];
     database = { };
     // for the time being, the database is just made of the 'tells'
-	d3.json("./data/tells.json", function (tempTells) {
+    console.log("Trying to read " + makeDatabaseUrl(qs.githubUsername) + "/tells.json");
+	d3.json(makeDatabaseUrl(qs.githubUsername) + "/tells.json", function (tempTells) {
         tells = tempTells.reduce(function (memo, tell) {
             memo[tell.name] = tell;
             return memo;
         }, { });
         async.each(Object.keys(tells), function (tellName, callback) {
-            d3.json("./data/tells/" + tellName + ".json", function (tellData) {
+            d3.json(makeDatabaseUrl(qs.githubUsername) + "/tells/" + tellName + ".json", function (tellData) {
                 tells[tellName].products = tellData.products;
                 callback(!tellData.products);
             });
         }, function (err) {
             database = { tells: tells };
+            console.log(JSON.stringify(database));
             callback(err);
         });
     });
