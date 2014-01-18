@@ -11,20 +11,20 @@ var qs = (function(a) {
 })(window.location.search.substr(1).split('&'));
 
 var readDatabase = function (callback) {
-    var tells = [ ];    
-    d3.json("./data/tells.json", function (tempTells) {
-        tells = tempTells.reduce(function (memo, tell) {
+    var tells = [ ]; 
+    jyql('select * from json where url="https://raw.github.com/' + qs.githubUsername + '/not-that-one-db/master/tells.json" and itemPath = "json"', function (err, tempTells) { 
+        tells = tempTells.query.results.json.json.reduce(function (memo, tell) {
             memo[tell.name] = tell;
             return memo;
         }, { });
         async.each(Object.keys(tells), function (tellName, callback) {
-            d3.json("./data/tells/" + tellName + ".json", function (tellData) {
-                tells[tellName].products = tellData.products;
+            jyql('select * from json where url="https://raw.github.com/' + qs.githubUsername + '/not-that-one-db/master/tells/' + tellName + '.json" and itemPath = "json.products"', function (err, tellData) { 
+                tells[tellName].products = [ ].concat(tellData.query.results.products);
                 callback(!tellData.products);
             });
         }, function (err) {
-            d3.json("./data/whitelist.json", function (whitelist) {
-                database = { whitelist: whitelist, tells: tells };
+            jyql('select * from json where url="https://raw.github.com/' + qs.githubUsername + '/not-that-one-db/master/whitelist.json" and itemPath = "json.products"', function (err, whitelistedProducts) { 
+                database = { whitelist: { products: [ ].concat(whitelistedProducts.query.results.products) }, tells: tells };
                 callback(err);
             });
         });
@@ -70,3 +70,12 @@ var findMaxWarningLevel = function (barcode, callback) {
 }
 
 var database = { };
+
+/*
+var q = 'select * from json where url="https://raw.github.com/giacecco/not-that-one-db/master/tells.json" and itemPath = "json.json"';
+jyql(q, function (err, data) { console.log(JSON.stringify(data.query.results.json)); });
+
+d3.json("https://raw.github.com/giacecco/not-that-one-db/master/tells.json", function (data) {
+    console.log(JSON.stringify(data));
+});
+*/
