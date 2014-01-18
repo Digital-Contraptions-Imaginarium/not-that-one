@@ -8,11 +8,9 @@
 
  		<script>
  			readDatabase(function (err) {
- 				/*
-	 			readProductTells({ format: qs.format, contents: qs.contents }, function (err, info) {
-	 				document.write("Hello! " + JSON.stringify(info));
+	 			findProductTells({ format: qs.format, contents: qs.contents, type: qs.type }, function (err, tells) {
+	 				document.write((new Date()) + " Hello! The tells are " + JSON.stringify(tells));
 	 			});
-				*/
  			});
  		</script>
 

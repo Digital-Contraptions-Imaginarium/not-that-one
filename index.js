@@ -26,14 +26,25 @@ var readDatabase = function (callback) {
             });
         }, function (err) {
             database = { tells: tells };
-            console.log(JSON.stringify(database));
             callback(err);
         });
     });
 }
 
-var readProductTells = function (barcode, callback) {
-    callback(null, { });
+var findProductTells = function (barcode, callback) {
+    var tells = [ ];
+    Object.keys(database.tells).forEach(function (tellName) {
+        database.tells[tellName].products.forEach(function (product) {
+            if (
+                (product.barcode.contents == barcode.contents) &&
+                (product.barcode.format == barcode.format) &&
+                (product.barcode.type == barcode.type)
+            ) {
+                tells = tells.concat(database.tells[tellName]);
+            }
+        });
+    });
+    callback(null, tells);
 }
 
 var database = { };
