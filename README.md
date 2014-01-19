@@ -1,5 +1,5 @@
 not-that-one
-############
+============
 
 Find anything you need to know about the **Not That One!** app at [http://www.digitalcontraptionsimaginarium.co.uk/not-that-one/](http://www.digitalcontraptionsimaginarium.co.uk/not-that-one/).
 
