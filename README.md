@@ -11,3 +11,4 @@ Find anything you need to know about the **Not That One!** app at [http://www.di
 The graphics is sourced from [The Noun Project](http://thenounproject.com/) and in particular:
 - the [hourglass icon](http://thenounproject.com/term/hour-glass/7974/) is by Laura Beggs (CC BY 3.0)
 - the [happy](http://thenounproject.com/term/happy/3060/), ["meh"](http://thenounproject.com/term/neutral/3061/), and [sad](http://thenounproject.com/term/sad/3062/) smileys are by Tobias F. Wolf (CC BY 3.0)
+- the [question mark icon](http://thenounproject.com/term/question/15356/) is by SuperAtic LABS (CC BY 3.0)
