@@ -15,9 +15,9 @@
         </div>
  		<script>
  			readDatabase(function (err) {
-	 			findMaxWarningLevel({ format: qs.format, contents: qs.contents, type: qs.type }, function (err, maxLevel) {
+	 			findProductTellsForDisplay({ format: qs.format, contents: qs.contents, type: qs.type }, function (err, data) {
 	 				// $("#centre_page_icon").hide();
-	 				switch (maxLevel) {
+	 				switch (data.maxWarningLevel) {
 	 					case -1:
 	 						// not found
 							$("#centre_page_icon").attr("src", "images/check_engine/meh_smiley.svg");
@@ -38,7 +38,7 @@
 			 				document.body.style.background = "red";
 	 						break;
 	 				}
-	 				// if (maxLevel > -1) $("#bottomMessage").html("Wanna know why?");
+	 				$("#bottomMessage").html(data.tellsMessages.map(function (t) { return t[1]; }).join("<br>"));
 	 				// document.body.style.background = [ "lightgrey", "green", "yellow", "red" ][maxLevel + 1];
 	 			});
  			});

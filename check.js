@@ -23,7 +23,6 @@ var readDatabase = function (callback) {
                 callback(null);
             });
         }, function (err) {
-            console.log("Error is " + JSON.stringify(err));
             jyql('select * from json where url="https://raw.github.com/' + qs.githubUsername + '/not-that-one-db/master/whitelist.json" and itemPath = "json.products"', function (err, whitelistedProducts) { 
                 database = { whitelist: { products: [ ].concat(whitelistedProducts.query.results.products) }, tells: tells };
                 callback(err);
@@ -65,6 +64,21 @@ var findMaxWarningLevel = function (barcode, callback) {
                 callback(err, tells.reduce(function (memo, tell) {
                     return parseInt(tell.warning_level) > memo ? parseInt(tell.warning_level) : memo;
                 }, -1));
+            });
+        }
+    });
+}
+
+var findProductTellsForDisplay = function (barcode, callback) {
+    var maxWarningLevel = -1,
+        tellsMessages = [ ];
+    isWhitelisted(barcode, function (err, whitelisted) {
+        if (whitelisted) {
+            callback(err, { maxWarningLevel: 0, tellsMessage: [ ] });
+        } else {
+            findProductTells(barcode, function (err, tells) {
+                tellsMessages = tells.map(function (t) { return [ parseInt(t.warning_level), t.description ]; }).sort(function (a, b) { return a[0] - b[0]; });
+                callback(err, { maxWarningLevel: (tellsMessages[0] || [ -1 ])[0], tellsMessages: tellsMessages });
             });
         }
     });
