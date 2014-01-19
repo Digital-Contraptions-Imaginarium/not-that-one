@@ -55,20 +55,6 @@ var isWhitelisted = function (barcode, callback) {
     }));  
 }
 
-var findMaxWarningLevel = function (barcode, callback) {
-    isWhitelisted(barcode, function (err, whitelisted) {
-        if (whitelisted) {
-            callback(err, 0);
-        } else {
-            findProductTells(barcode, function (err, tells) {
-                callback(err, tells.reduce(function (memo, tell) {
-                    return parseInt(tell.warning_level) > memo ? parseInt(tell.warning_level) : memo;
-                }, -1));
-            });
-        }
-    });
-}
-
 var findProductTellsForDisplay = function (barcode, callback) {
     var maxWarningLevel = -1,
         tellsMessages = [ ];
@@ -77,7 +63,7 @@ var findProductTellsForDisplay = function (barcode, callback) {
             callback(err, { maxWarningLevel: 0, tellsMessage: [ ] });
         } else {
             findProductTells(barcode, function (err, tells) {
-                tellsMessages = tells.map(function (t) { return [ parseInt(t.warning_level), t.description ]; }).sort(function (a, b) { return a[0] - b[0]; });
+                tellsMessages = tells.map(function (t) { return [ parseInt(t.warning_level), t.pretty_name ]; }).sort(function (a, b) { return a[0] - b[0]; });
                 callback(err, { maxWarningLevel: (tellsMessages[0] || [ -1 ])[0], tellsMessages: tellsMessages });
             });
         }
