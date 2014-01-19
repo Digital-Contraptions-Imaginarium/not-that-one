@@ -5,8 +5,10 @@
 		<script src="async-b6a1336bcb.js"></script>
 		<script src="jyql-c512a5044e.js"></script>
  		<script src="check.js"></script>
+ 		<link href="check.css" rel="stylesheet" type="text/css">
  	</head>
  	<body bgcolor="#545454">
+ 		<div id="hourglass_icon_container"><img id="hourglass_icon" src="images/check_engine/hourglass_icon.svg"></div>
  		<div style="position: relative">
             <p id="topMessage" style="position: fixed; top: 0; width:100%; text-align: center"></p>
             <p id="bottomMessage" style="position: fixed; bottom: 0; width:100%; text-align: center"></p>
@@ -14,7 +16,8 @@
  		<script>
  			readDatabase(function (err) {
 	 			findMaxWarningLevel({ format: qs.format, contents: qs.contents, type: qs.type }, function (err, maxLevel) {
-	 				if (maxLevel > -1) $("#bottomMessage").html("Wanna know why?");
+	 				$("#hourglass_icon").hide();
+	 				// if (maxLevel > -1) $("#bottomMessage").html("Wanna know why?");
 	 				document.body.style.background = [ "grey", "green", "yellow", "red" ][maxLevel + 1];
 	 			});
  			});

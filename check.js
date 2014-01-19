@@ -20,9 +20,10 @@ var readDatabase = function (callback) {
         async.each(Object.keys(tells), function (tellName, callback) {
             jyql('select * from json where url="https://raw.github.com/' + qs.githubUsername + '/not-that-one-db/master/tells/' + tellName + '.json" and itemPath = "json.products"', function (err, tellData) { 
                 tells[tellName].products = [ ].concat(tellData.query.results.products);
-                callback(!tellData.products);
+                callback(null);
             });
         }, function (err) {
+            console.log("Error is " + JSON.stringify(err));
             jyql('select * from json where url="https://raw.github.com/' + qs.githubUsername + '/not-that-one-db/master/whitelist.json" and itemPath = "json.products"', function (err, whitelistedProducts) { 
                 database = { whitelist: { products: [ ].concat(whitelistedProducts.query.results.products) }, tells: tells };
                 callback(err);
