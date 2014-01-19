@@ -8,7 +8,7 @@
  		<link href="check.css" rel="stylesheet" type="text/css">
  	</head>
  	<body bgcolor="#D3D3D3">
- 		<div id="hourglass_icon_container"><img id="hourglass_icon" src="images/check_engine/hourglass_icon.svg"></div>
+ 		<div id="centre_page_icon_container"><img id="centre_page_icon" src="images/check_engine/hourglass_icon.svg"></div>
  		<div style="position: relative">
             <p id="topMessage" style="position: fixed; top: 0; width:100%; text-align: center"></p>
             <p id="bottomMessage" style="position: fixed; bottom: 0; width:100%; text-align: center"></p>
@@ -16,9 +16,30 @@
  		<script>
  			readDatabase(function (err) {
 	 			findMaxWarningLevel({ format: qs.format, contents: qs.contents, type: qs.type }, function (err, maxLevel) {
-	 				$("#hourglass_icon").hide();
+	 				// $("#centre_page_icon").hide();
+	 				switch (maxLevel) {
+	 					case -1:
+	 						// not found
+							$("#centre_page_icon").attr("src", "images/check_engine/meh_smiley.svg");
+	 						break;
+	 					case 0:
+	 						// whitelisted
+							$("#centre_page_icon").attr("src", "images/check_engine/happy_smiley.svg");
+			 				document.body.style.background = "green";
+	 						break;
+	 					case 1:
+	 						// warning
+							$("#centre_page_icon").attr("src", "images/check_engine/meh_smiley.svg");
+			 				document.body.style.background = "yellow";
+	 						break;
+	 					case 2:
+	 						// no-no!
+							$("#centre_page_icon").attr("src", "images/check_engine/sad_smiley.svg");
+			 				document.body.style.background = "red";
+	 						break;
+	 				}
 	 				// if (maxLevel > -1) $("#bottomMessage").html("Wanna know why?");
-	 				document.body.style.background = [ "grey", "green", "yellow", "red" ][maxLevel + 1];
+	 				// document.body.style.background = [ "lightgrey", "green", "yellow", "red" ][maxLevel + 1];
 	 			});
  			});
  		</script>

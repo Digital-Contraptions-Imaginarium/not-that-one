@@ -1,4 +1,4 @@
-#hourglass_icon {
+#centre_page_icon {
   position: fixed; 
   top: 0; 
   left: 0; 
@@ -6,7 +6,7 @@
   min-height: 100%;
 }
 
-#hourglass_icon_container img {
+#centre_page_icon_container img {
   position: absolute; 
   top: 0; 
   left: 0; 
